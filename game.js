@@ -73,4 +73,31 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-console.log(playRound(prompt("Rock, Paper or Scissors?"), computerPlay() ) );
+function game(){
+    var cont = 0;
+    var regexWin = new RegExp("You win.*");
+    var regexLose = new RegExp("You lose.*");
+
+    for(var i =0 ; i<5 ; i++){ 
+
+        let result = playRound(prompt("Rock, Paper or Scissors?"), computerPlay() )
+        console.log(result);
+        if(regexWin.test(result)){
+            cont++;
+        }else if(regexLose.test(result)){
+            cont--;
+        }else{
+            i--;
+        }
+        console.log(i+ " "+cont) ;
+    }
+
+    if(cont > 0){
+        return "Congratulations, you won!!"
+    }else{
+        return "The computer won, better luck next time!!"
+    }
+
+}
+
+console.log(game());
